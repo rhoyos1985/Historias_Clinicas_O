@@ -1,0 +1,66 @@
+<div    xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        >
+    
+    <div id="headerlayout">
+        <div class="figure">
+            <div class="figure_logoheader">
+                <p:graphicImage styleClass="logopng" library="images"  name="logo.png" />
+            </div>
+        </div>
+        <h1>
+            #{msgProperties.lblnombrfacultad}  
+        </h1>
+        <div class="figure">
+            <h:form id ="formcerrarsesion">
+                <p:growl id="growlcerrarsesion" showDetail="true" life="3000" /> 
+                <div class="figure_infoapp">
+                    <h:outputLabel for="lblusuarioensesion" value="#{msgProperties.lblusuarioensesion}" /> <span class="figure_infoapp_usuarioensesion">#{sessionManagedBean.stusuario}</span>
+                    <div id="figure_horactual"></div>
+                    <p:commandLink id="cmdlcerrarsesion" styleClass="figure_cerrarsesion" 
+                                   value=" #{msgProperties.lblcerrarsesion}" 
+                                   actionListener="#{loginManagedBean.logout(e)}" update="growlcerrarsesion"/>
+                </div> 
+            </h:form>
+        </div>
+    </div>
+    
+    <div id="navloyouth">
+        <h:form id="formmenuprincipal">
+            <ul>
+                <li>
+                    <p:commandLink id="cmdlmenuppalpacientes" styleClass="icon-users" 
+                                   value=" #{msgProperties.lblmnupacientes}" 
+                                   action="pacientes" ajax="true" />
+                </li>
+                <li>
+                    <p:commandLink id="cmdlmenuppalagenda" styleClass="icon-calendar2" 
+                                   value=" #{msgProperties.lblmnuagenda}" 
+                                   action="agenda" ajax="true" />
+                </li>
+                <li>
+                    <p:commandLink id="cmdlmenuppalpagos" styleClass="icon-coin" 
+                                   value=" #{msgProperties.lblmnupagos}" 
+                                   action="pagos"  ajax="true" />
+                </li>
+                <li>
+                    <p:commandLink id="cmdlmenuppalseguridad" styleClass="icon-key" 
+                                   value=" #{msgProperties.lblmnuseguridad}" 
+                                   action="seguridad" ajax="true" />
+                </li>
+                <li>
+                    <p:commandLink id="cmdlmenuppaldocentes" styleClass="icon-user-md" 
+                                   value=" #{msgProperties.lblmnudocentes}" 
+                                   action="docentes" ajax="true" />
+                </li>
+            </ul>
+        </h:form>
+    </div>
+     
+    <div id="reloj" style="font-size:20px;"></div>
+
+</div>
+
+

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        
+        <!--Idioma por defecto e idiomas disponibles-->
+        <locale-config>
+            <default-locale>es_ES</default-locale>
+            <supported-locale>es_ES</supported-locale>
+            <supported-locale>en_US</supported-locale>
+        </locale-config>
+        
+        <!--importamos el archivo de recursos-->
+        <resource-bundle>
+            <base-name>com.ricsoft.hco.language.Language</base-name>
+            <var>msgProperties</var>
+        </resource-bundle>
+        
+    </application>
+    <managed-bean>
+        <description>ManagedBean para la pagina de perfiles</description>
+        <managed-bean-name>perfilesManagedBean</managed-bean-name>
+        <managed-bean-class>com.ricsoft.managebeans.PerfilesManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>pacientes</from-outcome>
+            <to-view-id>/pages/pacientes.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>agenda</from-outcome>
+            <to-view-id>/pages/agendas.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>pagos</from-outcome>
+            <to-view-id>/pages/pagos.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>seguridad</from-outcome>
+            <to-view-id>/pages/seguridad.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>docentes</from-outcome>
+            <to-view-id>/pages/docentes.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>clinicas</from-outcome>
+            <to-view-id>/pages/Clinicas.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Eps</from-outcome>
+            <to-view-id>/pages/Eps.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>perfiles</from-outcome>
+            <to-view-id>/pages/perfiles.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>reportes</from-outcome>
+            <to-view-id>/pages/reportes.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuarios</from-outcome>
+            <to-view-id>/pages/usuarios.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>diagnosticos</from-outcome>
+            <to-view-id>/pages/diagnosticos.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tratamientos</from-outcome>
+            <to-view-id>/pages/tratmientos.faces</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

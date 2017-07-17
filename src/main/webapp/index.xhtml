@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta name="description" content="Aplicación web de  historias clinicas" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+        <h:outputStylesheet name="./css/styleapp.css"/>
+        <title>#{msgProperties.lblTituloApp}</title>
+    </h:head>
+    <h:body>
+        <h:form id="formindex">
+            <div id="contentDivLogin">
+                <div id="contentDivTop">
+                    <h1>#{msgProperties.lbltitlelogin}</h1>
+                </div>
+
+                <div id="contentDivLeft">
+                     <p:graphicImage styleClass="imglogin" library="images"  name="logo_odontos.png" />
+                    <p>#{msgProperties.msjindexleft}</p>
+                </div>
+
+                <div id="contentDivRight">
+                    <p:panel id="panelLogin" styleClass="pnllogin" header="#{msgProperties.lbltitulosesion}" >  
+                        <p:growl id="growliniciosesion" showDetail="true" life="3000" />        <!-- Muestra el mensaje de error -->
+                        <h:panelGrid columns="2" cellpadding="5">  
+                            <h:outputLabel for="txtusername" value="#{msgProperties.lblUser}" />  
+                            <p:inputText value="#{loginManagedBean.loginbean.stnombreusuario}"   
+                                   id="txtusername" required="true" label="#{msgProperties.lblUser}" />  
+
+                           <h:outputLabel for="txtpassword" value="#{msgProperties.lblContrasena}" />  
+                           <p:password value="#{loginManagedBean.loginbean.stpassword}"   
+                                   id="txtpassword" required="true" label="#{msgProperties.lblContrasena}" />  
+
+                           <f:facet name="footer">  
+                               <p:commandButton id="loginButton" value="#{msgProperties.btnlogin}" update="growliniciosesion" 
+                                                actionListener="#{loginManagedBean.Login(e)}" />
+                               <p:commandLink id="linkRecorPass" styleClass="recordarcontrasenalink"  value="#{msgProperties.lblrecordarpass}" />
+                           </f:facet>
+                       </h:panelGrid>            
+                    </p:panel> 
+                    <div id="contentDivRightIn">
+                        <p>
+                           #{msgProperties.msjindexright} <br />
+                           #{msgProperties.msjindexrightuser} <br /> 
+                           #{msgProperties.msjindexrightpass}
+                        </p>
+                    </div>
+                </div>
+
+                <div id="contentDivBottom">
+                    <p>#{msgProperties.msjindexbottom}</p>
+                    <p>#{msgProperties.msjcopyright} <p:commandLink id="lblLink" styleClass="contactolink"  value="#{msgProperties.lblcorreocontacto}" /></p>
+                </div>
+            </div>
+        </h:form>
+        <script type="text/javascript">
+        {
+            if(history.forward(1))
+                location.replace(history.forward(1));
+        }
+        </script>
+    </h:body>
+</html>
+

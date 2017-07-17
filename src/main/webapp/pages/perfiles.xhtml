@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../WEB-INF/share/layout/ppalLayout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <div class="panel">
+            <div class="panel_header">
+                <h3>
+                    #{msgProperties.lbltituloperfiles}
+                </h3>
+            </div>
+            <div class="panel_content">
+                
+                <!-- *************************************************************************
+                                    Boton para llamar al dlgnuevoperfil
+                     ************************************************************************* -->
+                <h:form id="formnvuperfil" styleClass="frmnvuperfil">
+                    <p:commandButton    id="cmdbagregarperfil"
+                                        value="#{msgProperties.lblcmbagregar}" 
+                                        actionListener="#{perfilesManagedBean.PrepararInsertar(e)}" 
+                                        styleClass="ui-priority-primary agregarperfil" 
+                                        icon="ui-icon ui-icon-plusthick icon-perfil"
+                                        title="#{msgProperties.lblcmbagregar}"
+                                        />
+                </h:form>
+                
+                <!-- *************************************************************************
+                                   Dialogo Nuevo Perfil
+                     ************************************************************************* -->
+                <h:form id="formagregarperfil">
+                    <p:dialog id="dlgnuevoperfil" header="#{msgProperties.lbltitlenvuperfil}" widgetVar="dlginsertarperfil" modal="true" resizable="false" >
+                        <p:messages id="msgsdlgperfiles"  autoUpdate="true" closable="true" />
+                        <p:growl id="gwlinsertaperfil" sticky="true" showDetail="true" life="3000" />
+
+                        <h:panelGrid id="pnlinsertarperfil" columns="2" cellpadding="10" >
+                            <h:outputLabel styleClass="labelperiles" for="itxtcodigoperfil" value="#{msgProperties.lblcodigo}" />
+                            <p:inputText id="itxtcodigoperfil" value="#{perfilesManagedBean.perfilesbeans.stNombre}" 
+                                         required="true" label="#{msgProperties.lblcodigo}" />
+
+                            <h:outputLabel styleClass="labelperiles" for="itxtdescripcionperfil" value="#{msgProperties.lbldescripcion} " />
+                            <p:inputText id="itxtdescripcionperfil" value="#{perfilesManagedBean.perfilesbeans.stDescripcion}" 
+                                         required="true" label="#{msgProperties.lbldescripcion}" />
+
+                            <p:commandButton id="cmdbaguardarperfil" icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlgperfiles" 
+                                             actionListener="#{perfilesManagedBean.InsertarPerfil(e)}"  />
+                            <p:commandButton id="cmdbcancelarperfil" value="#{msgProperties.cmbcancelar}" onclick="PF('dlginsertarperfil').hide()"
+                                             title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />
+                        </h:panelGrid>
+
+                    </p:dialog> 
+                </h:form>
+                
+                
+                <!-- *************************************************************************
+                                  Dialogo Modificar Perfil
+                    ************************************************************************* -->
+                <h:form id="formmodificarperfil">
+                    <p:dialog id="dlgmodificarperfil" header="Modificar Perfil" widgetVar="wdvmodificarperfil" modal="true" resizable="false">
+                        <p:messages id="msgsdlmodificargperfiles" autoUpdate="true" closable="true" />
+                        <p:growl id="gwlmodificarperfil" sticky="true" showDetail="true" life="3000" />
+                        
+                        <h:panelGrid id="pnlmodificarperfil" columns="2" cellpadding="10">
+
+                            <h:outputLabel styleClass="labelperiles" for="itxtmodificarcodigoperfil" value="#{msgProperties.lblcodigo} " />
+                            <p:inputText id="itxtmodificarcodigoperfil" value="#{perfilesManagedBean.perfilesbeans.stNombre}" 
+                                         required="true" label="#{msgProperties.lblcodigo}" />
+
+                            <h:outputLabel styleClass="labelperiles" for="itxtmodificardescripcionperfil" value="#{msgProperties.lbldescripcion} " />
+                            <p:inputText id="itxtmodificardescripcionperfil" value="#{perfilesManagedBean.perfilesbeans.stDescripcion}" 
+                                         required="true" label="#{msgProperties.lbldescripcion}" />
+
+                            <p:commandButton icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlmodificargperfiles" 
+                                             actionListener="#{perfilesManagedBean.ActualizarPerfil(e)}"  />
+                            <p:commandButton id="cmdbcancelarmodificarperfil" value="#{msgProperties.cmbcancelar}" onclick="PF('wdvmodificarperfil').hide()"
+                                              title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />
+                        </h:panelGrid>
+                    </p:dialog>
+                </h:form>
+                
+                <!-- *************************************************************************
+                                            Tabla de perfiles
+                     ************************************************************************* -->
+                <h:form id="formtableperfil">
+                    <p:growl id="gwltableperfil" sticky="true" showDetail="true" life="3000" />
+                    
+                    <p:dataTable id="dtlperfiles" var="tblperfiles" value="#{perfilesManagedBean.lstperfiles}" emptyMessage="No hay perfiles disponibles."
+                                 paginator="true" rows="10" paginatorPosition="bottom" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+
+                        <p:column headerText="#{msgProperties.lblcodigo}">
+                            <h:outputText value="#{tblperfiles.stNombre}" />
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lbldescripcion}">
+                            <h:outputText value="#{tblperfiles.stDescripcion}" />
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lbltblheadprocesos}" styleClass="columngestioncontenido">
+                            <p:commandButton id="cmdbmodificarperfil" actionListener="#{perfilesManagedBean.PrepararActualizar(tblperfiles.inId)}"
+                                             title="#{msgProperties.cmbatualizar}" icon="ui-icon-pencil" />
+                            <p:commandButton id="cmdbeliminarperfil" actionListener="#{perfilesManagedBean.EliminarPerfil(tblperfiles.inId)}"
+                                             title="#{msgProperties.cmbborrar}" icon="ui-icon-closethick" update=":formtableperfil:gwltableperfil" >
+                                <p:confirm header="#{msgProperties.lblheaderconfirmacion}" message="#{msgProperties.msgconfirmareliminarperfil}" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                    
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="blind">
+                        <p:commandButton value="#{msgProperties.lblcmbsi}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="#{msgProperties.lblcmbno}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </h:form>
+                
+                
+                
+            </div>
+            <div class="panel_footer">
+      
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

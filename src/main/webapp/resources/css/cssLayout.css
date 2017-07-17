@@ -1,0 +1,49 @@
+#contenedor
+{
+    overflow: hidden;
+}
+
+#top {
+    position: relative;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    max-width: 20%;
+}
+
+#content {
+margin: 0 0px 0 20%;
+padding: 4px;
+text-align: left;
+}
+
+.content_contenido {
+margin: 0 0px 0 12%;
+padding: 4px;
+text-align: left;
+}
+
+/*
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+*/
+

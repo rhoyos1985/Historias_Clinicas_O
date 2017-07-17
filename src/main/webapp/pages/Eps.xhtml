@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../WEB-INF/share/layout/ppalLayout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <div class="panel">
+            <div class="panel_header">
+                <h3>
+                    #{msgProperties.lbltituloeps}
+                </h3>
+            </div>
+            
+            
+            <div class="panel_content">
+                                 
+                <!-- ************************************************************************
+                                  Boton para llamar al dlgnuevaclinica
+                ************************************************************************* -->
+                <h:form id="formnvueps" styleClass="frmnvuperfil">
+                    <p:commandButton    id="cmdbagregareps"
+                                        value="#{msgProperties.lblcmbagregar}" 
+                                        actionListener="#{epsmanagedbeans.PrepararInsertar(e)}" 
+                                        styleClass="ui-priority-primary agregarperfil" 
+                                        icon="ui-icon ui-icon-plusthick icon-perfil"
+                                        title="#{msgProperties.lblcmbagregar}"
+                                        />
+                </h:form>
+                           
+                <!-- ************************************************************************
+                                   Dialogo Nueva Clinica
+                ************************************************************************* -->
+                <h:form id="formagregareps">
+                    <p:dialog id="dlgnuevaeps" header="#{msgProperties.lbltitlenvuclinica}" widgetVar="dlginsertareps" modal="true" resizable="false" >
+                        <p:messages id="msgsdlgepss"  autoUpdate="true" closable="true" />
+                        <p:growl id="gwlinsertaeps" sticky="true" showDetail="true" life="3000" />
+
+                        <h:panelGrid id="pnlinsertareps" columns="4" cellpadding="10">
+                            
+                            <p:outputLabel styleClass="labelperiles" for="itxtcodigoeps" value="#{msgProperties.lblcodigo}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCodigoEps}" id="itxtcodigoeps"
+                                         required="true" label="#{msgProperties.lblcodigo}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtnombreeps" value="#{msgProperties.lblnombre}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stNombreEps}" id="itxtnombreeps"
+                                         required="true" label="#{msgProperties.lblnombre}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtdireccioneps" value="#{msgProperties.lbldireccion}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stDireccionEps}" id="itxtdireccioneps"
+                                         required="true" label="#{msgProperties.lbldireccion}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtbarrioeps" value="#{msgProperties.lblbarrio}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stBarrioEps}" id="itxtbarrioeps"
+                                         required="true" label="#{msgProperties.lblbarrio}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtciudadeps" value="#{msgProperties.lblciudad}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCiudadEps}" id="itxtciudadeps"
+                                         required="true" label="#{msgProperties.lblciudad}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtpaiseps" value="#{msgProperties.lblpais}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stPaisEps}" id="itxtpaiseps"
+                                         required="true" label="#{msgProperties.lblpais}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtniteps" value="#{msgProperties.lblnit}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stNITEps}" id="itxtniteps"
+                                         required="true" label="#{msgProperties.lblnit}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxttelefono1eps" value="#{msgProperties.lbltelefono1}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stTelefono1}" id="itxttelefono1eps"
+                                         required="true" label="#{msgProperties.lbltelefono1}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxttelefono2eps" value="#{msgProperties.lbltelefono2}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stTelefono2}" id="itxttelefono2eps"
+                                         required="true" label="#{msgProperties.lbltelefono2}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtfaxeps" value="#{msgProperties.lblfax}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stFaxEps}" id="itxtfaxeps"
+                                         required="true" label="#{msgProperties.lblfax}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtcelulareps" value="#{msgProperties.lblcelucar}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCelularEps}" id="itxtcelulareps"
+                                         required="true" label="#{msgProperties.lblcelucar}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtcorreoeps" value="#{msgProperties.lblcorreoelectronico}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCorreoEps}" id="itxtcorreoeps"
+                                         required="true" label="#{msgProperties.lblcorreoelectronico}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtcontactoeps" value="#{msgProperties.lblnombrecontacto}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stContactoEps}" id="itxtcontactoeps"
+                                         required="true" label="#{msgProperties.lblnombrecontacto}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtpagwebeps" value="#{msgProperties.lblpaginaweb}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stPaginaWebEps}" id="itxtpagwebeps"
+                                         required="true" label="#{msgProperties.lblpaginaweb}"/>
+                            
+
+                        </h:panelGrid>
+                        
+                        <h:panelGrid columns="2" cellpadding="10" >
+                            <p:outputLabel styleClass="labelperiles" for="itxtobservacioneseps" value="#{msgProperties.lblobservaciones}" />
+                            <p:inputTextarea value="#{epsmanagedbeans.epsbeans.stObservacionesEps}" style="width: 34em" id="itxtobservacioneseps"
+                            required="true" label="#{msgProperties.lblobservaciones}" />
+                            
+                            <p:commandButton id="cmdbaguardareps" icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlgepss" 
+                            actionListener="#{epsmanagedbeans.InsertarEps(e)}"  />
+                            <p:commandButton id="cmdbcancelareps" value="#{msgProperties.cmbcancelar}" onclick="PF('dlginsertareps').hide()"
+                            title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />
+                        </h:panelGrid>
+                        
+
+
+                    </p:dialog> 
+                </h:form>
+                              
+                <!-- ************************************************************************
+                                  Dialogo Modificar Clinica
+                ************************************************************************* -->
+                <h:form id="formmodificareps">
+                    <p:dialog id="dlgmodificareps" header="#{msgProperties.lblmodificareps}" widgetVar="wdvmodificareps" modal="true" resizable="false">
+                        <p:messages id="msgsdlmodificargepss" autoUpdate="true" closable="true" />
+                        <p:growl id="gwlmodifiepss" sticky="true" showDetail="true" life="3000" />
+                        
+                        <h:panelGrid id="pnlmodificarepss" columns="4" cellpadding="10">
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarcodigoeps" value="#{msgProperties.lblcodigo}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCodigoEps}" id="itxtmodificarcodigoeps"
+                                         required="true" label="#{msgProperties.lblcodigo}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarnombreeps" value="#{msgProperties.lblnombre}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stNombreEps}" id="itxtmodificarnombreeps"
+                                         required="true" label="#{msgProperties.lblnombre}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificardireccioneps" value="#{msgProperties.lbldireccion}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stDireccionEps}" id="itxtmodificardireccioneps"
+                                         required="true" label="#{msgProperties.lbldireccion}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarbarrioeps" value="#{msgProperties.lblbarrio}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stBarrioEps}" id="itxtmodificarbarrioeps"
+                                         required="true" label="#{msgProperties.lblbarrio}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarciudadeps" value="#{msgProperties.lblciudad}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCiudadEps}" id="itxtmodificarciudadeps"
+                                         required="true" label="#{msgProperties.lblciudad}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarpaiseps" value="#{msgProperties.lblpais}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stPaisEps}" id="itxtmodificarpaiseps"
+                                         required="true" label="#{msgProperties.lblpais}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarniteps" value="#{msgProperties.lblnit}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stNITEps}" id="itxtmodificarniteps"
+                                         required="true" label="#{msgProperties.lblnit}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificartelefono1eps" value="#{msgProperties.lbltelefono1}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stTelefono1}" id="itxtmodificartelefono1eps"
+                                         required="true" label="#{msgProperties.lbltelefono1}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificartelefono2eps" value="#{msgProperties.lbltelefono2}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stTelefono2}" id="itxtmodificartelefono2eps"
+                                         required="true" label="#{msgProperties.lbltelefono2}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarfaxeps" value="#{msgProperties.lblfax}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stFaxEps}" id="itxtmodificarfaxeps"
+                                         required="true" label="#{msgProperties.lblfax}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarcelulareps" value="#{msgProperties.lblcelucar}" />
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCelularEps}" id="itxtmodificarcelulareps"
+                                         required="true" label="#{msgProperties.lblcelucar}" />
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarcorreoeps" value="#{msgProperties.lblcorreoelectronico}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stCorreoEps}" id="itxtmodificarcorreoeps"
+                                         required="true" label="#{msgProperties.lblcorreoelectronico}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarcontactoeps" value="#{msgProperties.lblnombrecontacto}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stContactoEps}" id="itxtmodificarcontactoeps"
+                                         required="true" label="#{msgProperties.lblnombrecontacto}"/>
+
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarpagwebeps" value="#{msgProperties.lblpaginaweb}"/>
+                            <p:inputText value="#{epsmanagedbeans.epsbeans.stPaginaWebEps}" id="itxtmodificarpagwebeps"
+                                         required="true" label="#{msgProperties.lblpaginaweb}"/>
+
+
+                        </h:panelGrid>
+                        
+                        <h:panelGrid id="pnlmodificarepss2" columns="2" cellpadding="10">
+                            
+                            
+                            <p:outputLabel styleClass="labelperiles" for="itxtmodificarobservacioneseps" value="#{msgProperties.lblobservaciones}" />
+                                <p:inputTextarea value="#{epsmanagedbeans.epsbeans.stObservacionesEps}" style="width: 34em" id="itxtmodificarobservacioneseps"
+                                required="true" label="#{msgProperties.lblobservaciones}" />
+                            
+                                <p:commandButton icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlmodificargepss" 
+                                actionListener="#{epsmanagedbeans.ActualizarEps(e)}"  />
+                                <p:commandButton id="cmdbcancelarmodificareps" value="#{msgProperties.cmbcancelar}" onclick="PF('wdvmodificareps').hide()"
+                                title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />                          
+                        </h:panelGrid>
+                        
+                        
+
+
+                    </p:dialog>
+                </h:form>
+                
+                <!-- ************************************************************************
+                                            Tabla de perfiles
+                ************************************************************************* -->
+
+            <h:form id="formtableeps">
+            <p:growl id="gwltableeps" sticky="true" showDetail="true" life="3000" />
+
+            <p:dataTable id="dtlepss" var="tblEpss" value="#{epsmanagedbeans.lsteps}"  emptyMessage="#{msgProperties.lbltablavacia}"
+                    paginator="true" rows="10" paginatorPosition="bottom"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15">
+
+                        <p:column headerText="#{msgProperties.lblnombre}">
+                            <h:outputText value="#{tblEpss.stNombreEps}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lbldireccion}">
+                            <h:outputText value="#{tblEpss.stDireccionEps}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lblbarrio}">
+                            <h:outputText value="#{tblEpss.stBarrioEps}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lblciudad}">
+                            <h:outputText value="#{tblEpss.stCiudadEps}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lblnit}">
+                            <h:outputText value="#{tblEpss.stNITEps}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lbltelefono1}">
+                            <h:outputText value="#{tblEpss.stTelefono1}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lblfax}">
+                            <h:outputText value="#{tblEpss.stFaxEps}"/>
+                        </p:column>
+                
+                        <p:column headerText="#{msgProperties.lbltblheadprocesos}" styleClass="columngestioncontenido">
+                            <p:commandButton id="cmdbmodificareps" actionListener="#{epsmanagedbeans.PrepararActualizar(tblEpss.intID)}"
+                                             title="#{msgProperties.cmbatualizar}" icon="ui-icon-pencil" />
+                            <p:commandButton id="cmdbeliminareps" actionListener="#{epsmanagedbeans.EliminarEps(tblEpss.intID)}"
+                                             title="#{msgProperties.cmbborrar}" icon="ui-icon-closethick" update=":formtableeps:gwltableeps">
+                                <p:confirm header="#{msgProperties.lblheaderconfirmacion}" message="#{msgProperties.msgconfirmareliminareps}" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+
+                </p:dataTable>
+                                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="blind">
+                    <p:commandButton value="#{msgProperties.lblcmbsi}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="#{msgProperties.lblcmbno}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>            
+            </h:form>                
+                
+            </div>
+            
+            
+            
+            <div class="panel_footer">
+      
+            </div>
+        </div>
+        
+        
+    </ui:define>
+
+</ui:composition>

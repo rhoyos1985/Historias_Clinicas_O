@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msgProperties.lblTituloApp}</title>
+        <link rel="stylesheet" type="text/css" href="../../resources/css/normalize.css" />
+        <link rel="stylesheet" href="../../resources/css/styleapp.css" />
+        
+        <script type="text/javascript" src="../../resources/js/prefixfree.js"></script>
+    </h:head>
+    <h:body>
+        <div id="content">
+            <div id="header">
+                <img src="../../resources/images/encabezadousuario.png" />
+            </div>
+            <div id="titulo">
+                <h1>Historias Clinicas - Usuarios</h1>
+            </div>
+            <div id="section">
+                <h:form>
+                    <p:panel id="pnlusuarios">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="txtNombresUsuario" value="#{msgProperties.lblnombreusuario}" />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stNombres}"   
+                                   id="txtNombresUsuario" required="true" label="#{msgProperties.lblnombreusuario}" />
+                            
+                            <h:outputLabel for="txtApellidosUsuario" value="#{msgProperties.lblapellidousuario}" />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stApellidos}"   
+                                   id="txtApellidosUsuario" required="true" label="#{msgProperties.lblapellidousuario}" />
+                            
+                            <h:outputLabel for="txtNickUsuario" value="#{msgProperties.lblnickusuario}" />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stUsuario}"   
+                                   id="txtNickUsuario" required="true" label="#{msgProperties.lblnickusuario}" />
+                            
+                            <h:outputLabel for="txtPasswordUsuario" value="#{msgProperties.lblpasswordusuario}" />
+                            <p:password id="txtPasswordUsuario" value="#{usuariosManagedBeans.usuarioBeans.stPassword}" 
+                                        match="txtrptpasswordusuario" label="#{msgProperties.lblpasswordusuario}" required="true" />
+
+                            <h:outputLabel for="txtrptpasswordusuario" value="#{msgProperties.lblrptpasswordusuario}" />
+                            <p:password id="txtrptpasswordusuario" value="#{usuariosManagedBeans.usuarioBeans.stPassword}" 
+                                        label="#{msgProperties.lblrptpasswordusuario}" required="true" />
+                            
+                            <h:outputLabel for="txtTelefonoUsuario" value="#{msgProperties.lbltelefonousuario}" />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stMovil}"   
+                                   id="txtTelefonoUsuario" label="#{msgProperties.lbltelefonousuario}" />
+                            
+                            <h:outputLabel for="txtEmailUsuario" value="#{msgProperties.lblemailusuario}"  />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stEmail}"    
+                                   id="txtEmailUsuario" label="#{msgProperties.lblemailusuario}" />
+                            
+                            <h:outputLabel for="txtobservacionesusuario" value="#{msgProperties.lblobservacionusuario}" />  
+                            <p:inputText value="#{usuariosManagedBeans.usuarioBeans.stObservacionUsuario}"   
+                                   id="txtobservacionesusuario" label="#{msgProperties.lblobservacionusuario}" />
+                            
+                            
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>

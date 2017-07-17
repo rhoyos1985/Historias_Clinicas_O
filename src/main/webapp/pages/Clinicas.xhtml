@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../WEB-INF/share/layout/ppalLayout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <div class="panel">
+            <div class="panel_header">
+                <h3>
+                    #{msgProperties.lbltituloclinicas}
+                </h3>
+            </div>
+            
+            
+            <div class="panel_content">
+                                
+                <!-- ************************************************************************
+                                  Boton para llamar al dlgnuevaclinica
+                ************************************************************************* -->
+                <h:form id="formnvuclinica" styleClass="frmnvuperfil">
+                    <p:commandButton    id="cmdbagregarclinica"
+                                        value="#{msgProperties.lblcmbagregar}" 
+                                        actionListener="#{clinicamanagedbeans.PrepararInsertar(e)}" 
+                                        styleClass="ui-priority-primary agregarperfil" 
+                                        icon="ui-icon ui-icon-plusthick icon-perfil"
+                                        title="#{msgProperties.lblcmbagregar}"
+                                        />
+                </h:form>
+                  
+                <!-- ************************************************************************
+                                   Dialogo Nueva Clinica
+                ************************************************************************* -->
+                <h:form id="formagregarclinica">
+                    <p:dialog id="dlgnuevaclinica" header="#{msgProperties.lbltitlenvuclinica}" widgetVar="dlginsertarclinica" modal="true" resizable="false" >
+                        <p:messages id="msgsdlgclinicas"  autoUpdate="true" closable="true" />
+                        <p:growl id="gwlinsertaclinica" sticky="true" showDetail="true" life="3000" />
+
+                        <h:panelGrid id="pnlinsertarclinica" columns="2" cellpadding="10">
+                            
+                            <h:outputLabel styleClass="labelperiles" for="itxtcodigoclinica" value="#{msgProperties.lblcodigo}"/>                            
+                            <p:inputText id="itxtcodigoclinica" value="#{clinicamanagedbeans.clinicabeans.stCodigo}" 
+                                         required="true" label="#{msgProperties.lblcodigo}" />
+
+                            <h:outputLabel styleClass="labelperiles" for="itxtnombreclinica" value="#{msgProperties.lblnombre}" />                            
+                            <p:inputText id="itxtnombreclinica" value="#{clinicamanagedbeans.clinicabeans.stNombre}" 
+                                         required="true" label="#{msgProperties.lblnombre}" />
+  
+                            
+                            <h:outputLabel styleClass="labelperiles" for="itxtdescripcionclinica" value="#{msgProperties.lbldescripcion}" />                            
+                            <p:inputText id="itxtdescripcionclinica" value="#{clinicamanagedbeans.clinicabeans.stDescripcion}" 
+                                         required="true" label="#{msgProperties.lbldescripcion}" />
+
+                            <p:commandButton id="cmdbaguardarperfil" icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlgclinicas" 
+                                             actionListener="#{clinicamanagedbeans.InsertarClinca(e)}"  />
+                            <p:commandButton id="cmdbcancelarperfil" value="#{msgProperties.cmbcancelar}" onclick="PF('dlginsertarclinica').hide()"
+                                             title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />
+                            
+                        </h:panelGrid>
+
+                    </p:dialog> 
+                </h:form>
+                
+                <!-- ************************************************************************
+                                  Dialogo Modificar Clinica
+                ************************************************************************* -->
+                <h:form id="formmodificarclinica">
+                    <p:dialog id="dlgmodificarclinica" header="#{msgProperties.lblmodificarclinica}" widgetVar="wdvmodificarclinica" modal="true" resizable="false">
+                        <p:messages id="msgsdlmodificargclinicas" autoUpdate="true" closable="true" />
+                        <p:growl id="gwlmodificarclinicas" sticky="true" showDetail="true" life="3000" />
+                        
+                        <h:panelGrid id="pnlmodificarclinicas" columns="2" cellpadding="10">
+                            
+                            <h:outputLabel styleClass="labelperiles" for="itxtmodificarcodigoclinica" value="#{msgProperties.lblcodigo}"/>                            
+                            <p:inputText id="itxtmodificarcodigoclinica" value="#{clinicamanagedbeans.clinicabeans.stCodigo}" 
+                                         required="true" label="#{msgProperties.lblcodigo}" />
+
+                            <h:outputLabel styleClass="labelperiles" for="itxtmodificarnombreclinica" value="#{msgProperties.lblnombre}" />                            
+                            <p:inputText id="itxtmodificarnombreclinica" value="#{clinicamanagedbeans.clinicabeans.stNombre}" 
+                                         required="true" label="#{msgProperties.lblnombre}" />
+  
+                            
+                            <h:outputLabel styleClass="labelperiles" for="itxtmodificardescripcionclinica" value="#{msgProperties.lbldescripcion}" />                            
+                            <p:inputText id="itxtmodificardescripcionclinica" value="#{clinicamanagedbeans.clinicabeans.stDescripcion}" 
+                                         required="true" label="#{msgProperties.lbldescripcion}" />
+
+                            <p:commandButton icon="ui-icon-disk" value="#{msgProperties.cmbguardar}" update="msgsdlmodificargclinicas" 
+                                             actionListener="#{clinicamanagedbeans.ActualizarClinica(e)}"  />
+                            <p:commandButton id="cmdbcancelarmodificarclinica" value="#{msgProperties.cmbcancelar}" onclick="PF('wdvmodificarclinica').hide()"
+                                              title="#{msgProperties.cmbcancelar}" icon="ui-icon-closethick" />
+                        </h:panelGrid>
+                    </p:dialog>
+                </h:form>
+                
+                
+            <!-- ************************************************************************
+                                            Tabla de Clinicas
+            ************************************************************************* -->
+
+            <h:form id="formtableclinica">
+            <p:growl id="gwltableclinica" sticky="true" showDetail="true" life="3000" />
+
+            <p:dataTable id="dtlclinicas" var="tblClinicas" value="#{clinicamanagedbeans.lstclinicas}"  emptyMessage="#{msgProperties.lbltablavacia}"
+                    paginator="true" rows="10" paginatorPosition="bottom"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15">
+
+                        <p:column headerText="#{msgProperties.lblcodigo}">
+                            <h:outputText value="#{tblClinicas.stCodigo}" />
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lblnombre}">
+                            <h:outputText value="#{tblClinicas.stNombre}" />
+                        </p:column>
+
+                        <p:column headerText="#{msgProperties.lbldescripcion}">
+                            <h:outputText value="#{tblClinicas.stDescripcion}" />
+                        </p:column>
+                
+                        <p:column headerText="#{msgProperties.lbltblheadprocesos}" styleClass="columngestioncontenido">
+                            <p:commandButton id="cmdbmodificarclinica" actionListener="#{clinicamanagedbeans.PrepararActualizar(tblClinicas.intID)}"
+                                             title="#{msgProperties.cmbatualizar}" icon="ui-icon-pencil" />
+                            <p:commandButton id="cmdbeliminarclinica" actionListener="#{clinicamanagedbeans.EliminarClinica(tblClinicas.intID)}"
+                                             title="#{msgProperties.cmbborrar}" icon="ui-icon-closethick" update=":formtableclinica:gwltableclinica">
+                                <p:confirm header="#{msgProperties.lblheaderconfirmacion}" message="#{msgProperties.msgconfirmareliminarclinica}" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+
+                </p:dataTable>
+                                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="blind">
+                    <p:commandButton value="#{msgProperties.lblcmbsi}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="#{msgProperties.lblcmbno}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>            
+            </h:form>
+            </div>
+            
+            
+            
+            <div class="panel_footer">
+      
+            </div>
+        </div>
+        
+        
+    </ui:define>
+
+</ui:composition>
